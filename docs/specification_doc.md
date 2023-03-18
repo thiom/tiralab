@@ -8,6 +8,7 @@ My plan is to write an interpreter for regular expressions. This will be a comma
 Regexes will support the following operators:
 
 |Operator  |Syntax  | Matches|
+--- | --- | –––|
 |?:       |a?      | 0 or 1 "a"|
 |Or:      |0|1     | "0" or "1"|  
 |Star:    |a*      | 0 or more "a"|
