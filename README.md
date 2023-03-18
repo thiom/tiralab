@@ -2,4 +2,4 @@
 
 ## Documentation
 
-[Specification document](https://github.com/thiom/tiralab/blob/main/docs/specification_doc.md)
+[Project specification](https://github.com/thiom/tiralab/blob/main/docs/specification_doc.md)
