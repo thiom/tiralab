@@ -6,12 +6,12 @@ My plan is to write an interpreter for regular expressions. This will be a comma
 
 Regexes will support the following operators:
 
-?:       a?      matches 0 or 1 "a"
-Or:      0|1     matches "0" or "1" 
-Star:    a*      matches 0 or more "a"
-Plus:    a+      matches 1 or more "a"
-Group:   (ab)+   matches 1 or more "ab"
-Dot:     .       matches any supported char
+?:       a?      matches 0 or 1 "a" \
+Or:      0|1     matches "0" or "1"\ 
+Star:    a*      matches 0 or more "a"\
+Plus:    a+      matches 1 or more "a"\
+Group:   (ab)+   matches 1 or more "ab"\
+Dot:     .       matches any supported char\
 
 
 ## Implementation
