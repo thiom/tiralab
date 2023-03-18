@@ -7,12 +7,13 @@ My plan is to write an interpreter for regular expressions. This will be a comma
 
 Regexes will support the following operators:
 
-?:       a?      matches 0 or 1 "a"  
-Or:      0|1     matches "0" or "1"  
-Star:    a*      matches 0 or more "a"  
-Plus:    a+      matches 1 or more "a"  
-Group:   (ab)+   matches 1 or more "ab"  
-Dot:     .       matches any supported char
+|Operator  |Syntax  | Matches|
+|?:       |a?      | 0 or 1 "a"|
+|Or:      |0|1     | "0" or "1"|  
+|Star:    |a*      | 0 or more "a"|
+|Plus:    |a+      | 1 or more "a"|
+|Group:   |(ab)+   | 1 or more "ab"|
+|Dot:     |.       | any supported char|
 
 
 ## Implementation
