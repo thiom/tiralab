@@ -2,7 +2,7 @@
 
 ## Overview
 
-My plan is to write an interpreter for regular expressions. This will be a command-line tool and take a regex and
+My plan is to write an interpreter for regular expressions. This will be a command-line app and take a regex and
  a string to be matched as inputs.
 
 Regexes will support the following operators:
@@ -20,7 +20,7 @@ Regexes will support the following operators:
 ## Implementation
 
 I've never looked into implementation of regex engines before, but I have written an interpreter for a programming language recently, 
-so I'm very familiar with regular expressions in the context of theory of computation and commpiler/interpreter design (used in the scanning phase). 
+so I'm very familiar with regular expressions in the context of theory of computation and compiler/interpreter design (used in the scanning phase). 
 My initial instict would be to take similar approach to this one and follow a common convention for writing interpeters. 
 That is, there will be a scanner (or lexer) that will read input
 as characters one by one and split it into tokens. These tokens will then be passed to the parser which will try to understand some
