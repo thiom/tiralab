@@ -8,7 +8,6 @@ pub enum TokenType {
     LeftParen,
     Str,
     Or,
-    Any,
     EOF,
 }
 

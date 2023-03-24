@@ -1,5 +1,5 @@
 use crate::scanner::Scanner;
-use crate::tokens::{Token, TokenType, Value};
+use crate::tokens::{Token, TokenType};
 
 pub struct Parser {
     scanner: Scanner,
@@ -29,13 +29,13 @@ impl Parser {
     fn get_all_tokens(&mut self) -> Vec<Token> {
         let mut results = vec![self.current_token.as_ref().unwrap().clone()];
         self.current_token = Some(self.scanner.get_next_token());
-        while let token = self.current_token.as_ref().unwrap().clone() {
+        loop {
+            let token = self.current_token.as_ref().unwrap().clone();
             if let TokenType::EOF = token.type_ {
                 return results;
             }
             results.push(token);
             self.current_token = Some(self.scanner.get_next_token());
         }
-        results
     }
 }
