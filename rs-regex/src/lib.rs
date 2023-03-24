@@ -1,3 +1,9 @@
+mod parser;
+mod scanner;
+mod tokens;
+
+use crate::parser::Parser;
+use crate::scanner::Scanner;
 use clap::{App, Arg};
 use std::error::Error;
 
@@ -22,11 +28,14 @@ pub fn get_args() -> MyResult<Config> {
         .get_matches();
 
     Ok(Config {
-        regex: matches.value_of_lossy("regex").unwrap().to_string(),
+        regex: matches.value_of_lossy("regex").unwrap().trim().to_string(),
     })
 }
 
 pub fn run(config: Config) -> MyResult<()> {
     println!("REGEX: {}", &config.regex);
+    let scanner = Scanner::new(config.regex);
+    let mut parser = Parser::new(scanner);
+    parser.parse();
     Ok(())
 }
