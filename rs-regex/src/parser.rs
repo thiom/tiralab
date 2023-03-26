@@ -19,14 +19,14 @@ impl Parser {
         self.print_tokens();
     }
 
-    fn print_tokens(&mut self) {
+    pub fn print_tokens(&mut self) {
         let tokens = self.get_all_tokens();
         for token in tokens {
             println!("{}", token);
         }
     }
 
-    fn get_all_tokens(&mut self) -> Vec<Token> {
+    pub fn get_all_tokens(&mut self) -> Vec<Token> {
         let mut results = vec![self.current_token.as_ref().unwrap().clone()];
         self.current_token = Some(self.scanner.get_next_token());
         loop {
