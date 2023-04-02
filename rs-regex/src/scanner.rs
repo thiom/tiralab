@@ -1,106 +1,40 @@
-use crate::tokens::{Token, TokenType, Value};
+use crate::tokens::{Token, TokenType};
 
+#[derive(Debug)]
 pub struct Scanner {
     regex: String,
-    pos: usize,
-    current_char: Option<char>,
 }
 
 impl Scanner {
     pub fn new(regex: String) -> Self {
         Scanner {
-            regex: regex.clone(),
-            pos: 0,
-            current_char: Some(regex.as_bytes()[0] as char),
+            regex: regex.chars().rev().collect(),
         }
     }
 
     pub fn get_next_token(&mut self) -> Token {
-        while let Some(c) = self.current_char {
-            match c {
-                '*' => {
-                    self.advance();
-                    return Token::new(TokenType::Star, Value::Char(c));
-                }
-                '+' => {
-                    self.advance();
-                    return Token::new(TokenType::Plus, Value::Char(c));
-                }
-                '(' => {
-                    self.advance();
-                    return Token::new(TokenType::LeftParen, Value::Char(c));
-                }
-                ')' => {
-                    self.advance();
-                    return Token::new(TokenType::RightParen, Value::Char(c));
-                }
-                '|' => {
-                    self.advance();
-                    return Token::new(TokenType::Or, Value::Char(c));
-                }
-                _ => {
-                    return self.str_to_match();
-                }
-            }
+        match self.regex.pop() {
+            Some(c) => match c {
+                '\\' => Token::new(TokenType::Char, self.regex.pop().unwrap() as u8),
+                '|' => Token::new(TokenType::Union, c as u8),
+                '*' => Token::new(TokenType::Star, c as u8),
+                '(' => Token::new(TokenType::LeftParen, c as u8),
+                ')' => Token::new(TokenType::RightParen, c as u8),
+                _ => Token::new(TokenType::Char, c as u8),
+            },
+            None => Token::new(TokenType::EOF, 0xff),
         }
-        Token::new(TokenType::EOF, Value::None)
-    }
-
-    fn error(&self) {
-        panic!("invalid character used in the regex");
-    }
-
-    fn advance(&mut self) {
-        self.pos += 1;
-        if self.pos > self.regex.len() - 1 {
-            self.current_char = None;
-        } else {
-            self.current_char = Some(self.regex.as_bytes()[self.pos] as char);
-        }
-    }
-
-    fn peek(&self) -> Option<char> {
-        if self.pos > self.regex.len() {
-            None
-        } else {
-            Some(self.regex.as_bytes()[self.pos + 1] as char)
-        }
-    }
-
-    fn str_to_match(&mut self) -> Token {
-        let mut result = String::new();
-        while let Some(c) = self.current_char {
-            match c {
-                '.' => {
-                    result.push(c);
-                    self.advance();
-                }
-                _ => {
-                    if c.is_alphanumeric() {
-                        result.push(c);
-                        self.advance();
-                    } else {
-                        return Token::new(TokenType::Str, Value::String(result.clone()));
-                    }
-                }
-            }
-        }
-        if !result.is_empty() {
-            return Token::new(TokenType::Str, Value::String(result.clone()));
-        }
-        Token::new(TokenType::EOF, Value::None)
     }
 }
-
 #[cfg(test)]
 mod tests {
     use crate::scanner::Scanner;
-    use crate::tokens::{Token, TokenType, Value};
+    use crate::tokens::{Token, TokenType};
 
     #[test]
     fn scanner_string_token() {
-        let regex = "a.b";
-        let token = Token::new(TokenType::Str, Value::String("a.b".to_string()));
+        let regex = "a";
+        let token = Token::new(TokenType::Char, "a".as_bytes()[0] as u8);
         let mut scanner = Scanner::new(regex.to_string());
         let result = scanner.get_next_token();
         assert_eq!(result, token);
@@ -108,12 +42,11 @@ mod tests {
 
     #[test]
     fn scanner_closure_tokens() {
-        let regex = "a*b+";
-        let token_a = Token::new(TokenType::Str, Value::String("a".to_string()));
-        let token_star = Token::new(TokenType::Star, Value::Char("*".as_bytes()[0] as char));
-        let token_b = Token::new(TokenType::Str, Value::String("b".to_string()));
-        let token_plus = Token::new(TokenType::Plus, Value::Char("+".as_bytes()[0] as char));
+        let regex = "a*b";
         let mut scanner = Scanner::new(regex.to_string());
+        let token_a = Token::new(TokenType::Char, "a".as_bytes()[0] as u8);
+        let token_star = Token::new(TokenType::Star, "*".as_bytes()[0] as u8);
+        let token_b = Token::new(TokenType::Char, "b".as_bytes()[0] as u8);
 
         let result = scanner.get_next_token();
         assert_eq!(result, token_a);
@@ -123,35 +56,32 @@ mod tests {
 
         let result = scanner.get_next_token();
         assert_eq!(result, token_b);
-
-        let result = scanner.get_next_token();
-        assert_eq!(result, token_plus);
     }
 
     #[test]
-    fn scanner_group_and_or_tokens() {
-        let regex = "(a|b)";
-        let token_lparen = Token::new(TokenType::LeftParen, Value::Char("(".as_bytes()[0] as char));
-        let token_a = Token::new(TokenType::Str, Value::String("a".to_string()));
-        let token_or = Token::new(TokenType::Or, Value::Char("|".as_bytes()[0] as char));
-        let token_b = Token::new(TokenType::Str, Value::String("b".to_string()));
-        let token_rparen = Token::new(
-            TokenType::RightParen,
-            Value::Char(")".as_bytes()[0] as char),
-        );
+    fn scanner_group_and_union_tokens() {
+        let regex = "a(b|a)";
         let mut scanner = Scanner::new(regex.to_string());
-
-        let result = scanner.get_next_token();
-        assert_eq!(result, token_lparen);
+        let token_a = Token::new(TokenType::Char, "a".as_bytes()[0] as u8);
+        let token_lparen = Token::new(TokenType::LeftParen, "(".as_bytes()[0] as u8);
+        let token_b = Token::new(TokenType::Char, "b".as_bytes()[0] as u8);
+        let token_union = Token::new(TokenType::Union, "|".as_bytes()[0] as u8);
+        let token_rparen = Token::new(TokenType::RightParen, ")".as_bytes()[0] as u8);
 
         let result = scanner.get_next_token();
         assert_eq!(result, token_a);
 
         let result = scanner.get_next_token();
-        assert_eq!(result, token_or);
+        assert_eq!(result, token_lparen);
 
         let result = scanner.get_next_token();
         assert_eq!(result, token_b);
+
+        let result = scanner.get_next_token();
+        assert_eq!(result, token_union);
+
+        let result = scanner.get_next_token();
+        assert_eq!(result, token_a);
 
         let result = scanner.get_next_token();
         assert_eq!(result, token_rparen);

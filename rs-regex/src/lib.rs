@@ -1,11 +1,18 @@
+mod ast;
+mod dfa;
+mod nfa;
+mod nfa_fragment;
 mod parser;
+mod regex;
 mod scanner;
 mod tokens;
 
 use crate::parser::Parser;
+use crate::regex::Regex;
 use crate::scanner::Scanner;
 use clap::{App, Arg};
 use std::error::Error;
+use std::io::{stdin, stdout, Write};
 
 type MyResult<T> = Result<T, Box<dyn Error>>;
 
@@ -42,13 +49,35 @@ pub fn get_args() -> MyResult<Config> {
 }
 
 pub fn run(config: Config) -> MyResult<()> {
-    println!("REGEX: {}", &config.regex);
-    let scanner = Scanner::new(config.regex);
-    let mut parser = Parser::new(scanner);
     if config.print_tokens {
+        let scanner = Scanner::new(config.regex);
+        let mut parser = Parser::new(scanner);
         parser.print_tokens();
     } else {
-        parser.parse();
+        let regex = Regex::new(config.regex.to_string()).unwrap();
+        loop {
+            let mut input = String::new();
+            println!("\nGive a string (empty string will exit)");
+            println!("Regular expression is: {}", &config.regex);
+            let _ = stdout().flush();
+            stdin()
+                .read_line(&mut input)
+                .expect("Did not enter a correct string");
+            if let Some('\n') = input.chars().next_back() {
+                input.pop();
+            }
+            if let Some('\r') = input.chars().next_back() {
+                input.pop();
+            }
+            if input.is_empty() {
+                break;
+            }
+            if regex.matches(input.to_string()) {
+                println!("MATCH");
+            } else {
+                println!("NO MATCH");
+            }
+        }
     }
     Ok(())
 }
