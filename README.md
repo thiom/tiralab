@@ -1,18 +1,16 @@
 # Tiralabra 2023
 
-### Week 1
+### Docs
 
 [Project specification](https://github.com/thiom/tiralab/blob/main/docs/specification_doc.md)
 
-[Weekly report](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_1.md)
+[Testing document](https://github.com/thiom/tiralab/blob/main/docs/testing_doc.md)
 
-### Week 2
+### Weekly reports
 
-[Weekly report](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_2.md)
+[Week 1](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_1.md)
 
-### Week 3
+[Week 2](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_2.md)
 
-[Weekly report](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_3.md)
-
-[Test coverage](https://htmlpreview.github.io/?https://github.com/thiom/tiralab/blob/main/rs-regex/coverage/html/index.html)
+[Week 3](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_3.md)
 
