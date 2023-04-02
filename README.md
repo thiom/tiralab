@@ -10,3 +10,7 @@
 
 [Weekly report](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_2.md)
 
+### Week 3
+
+[Weekly report](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_3.md)
+
