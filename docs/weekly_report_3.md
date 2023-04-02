@@ -9,7 +9,9 @@ While constructing the AST, the nodes are already being processed and converted 
 fragments. The final NFA is then built using these fragments. After that, the NFA is converted into DFA (deterministic 
 finite automaton). Finally, this DFA can be used to recognize input strings.
 
-Regex --> Scanner --> <tokens> --> Parser --> AST --> NFA --> DFA
+As a simplified diagram, the order of actions looks like this:
+
+### Regex --> Scanner --> tokens --> Parser --> AST --> NFA --> DFA
 
 I still need to write some tests and do some final polishing. I might even expand the functionality. We'll see...
 
