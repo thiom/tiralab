@@ -14,5 +14,5 @@
 
 [Weekly report](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_3.md)
 
-[Code coverage](https://htmlpreview.github.io/?https://github.com/thiom/tiralab/blob/main/rs-regex/coverage/html/index.html)
+[Test coverage](https://htmlpreview.github.io/?https://github.com/thiom/tiralab/blob/main/rs-regex/coverage/html/index.html)
 

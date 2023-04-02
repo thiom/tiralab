@@ -15,7 +15,7 @@ As a simplified diagram, the order of actions looks like this:
 
 I still need to write some tests (as the 
 [test coverage](https://htmlpreview.github.io/?https://github.com/thiom/tiralab/blob/main/rs-regex/coverage/html/index.html) 
-might suggest and also do some final polishing. 
+might suggest) and also do some final polishing. 
 I might even expand the functionality. We'll see...
 
 ## Hours
