@@ -40,7 +40,7 @@ mod tests {
     }
 
     #[test]
-    fn basic_uppercase() {
+    fn basic_upper_lower_case() {
         let regex = "(B|cc|GG)*A";
         let dfa = Regex::new(regex.to_string()).unwrap();
         let to_accept = vec!["BA", "A", "ccGGA", "BBBA", "BBGGBBccA", "ccccccGGBGGA"];
@@ -62,7 +62,7 @@ mod tests {
         let mut s_len = 10;
         while s_len < 1000 {
             let mut s = String::from("");
-            for i in 0..s_len {
+            for _ in 0..s_len {
                 let c = rng.gen_range(97..123) as u8 as char;
                 s.push(c.to_owned());
             }
@@ -71,6 +71,40 @@ mod tests {
         }
         for string in to_accept {
             assert!(dfa.matches(string.to_string()));
+        }
+    }
+
+    #[test]
+    fn random_lower_upper_lower() {
+        let mut regex = "".to_string();
+        let lower = "(a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)*".to_string();
+        let upper = lower.to_uppercase();
+        regex.push_str(&lower);
+        regex.push_str(&upper);
+        regex.push_str(&lower);
+        let dfa = Regex::new(regex).unwrap();
+        let mut to_accept = vec!["".to_string()];
+        let mut rng = rand::thread_rng();
+        let mut s_len = 10;
+        while s_len < 500 {
+            let mut s = String::from("");
+            for _ in 0..s_len {
+                let c = rng.gen_range(97..123) as u8 as char;
+                s.push(c.to_owned());
+            }
+            for _ in 0..s_len {
+                let c = rng.gen_range(65..91) as u8 as char;
+                s.push(c.to_owned());
+            }
+            for _ in 0..s_len {
+                let c = rng.gen_range(97..123) as u8 as char;
+                s.push(c.to_owned());
+            }
+            to_accept.push(s);
+            s_len = s_len + 100;
+        }
+        for string in to_accept {
+            assert!(dfa.matches(string));
         }
     }
 }

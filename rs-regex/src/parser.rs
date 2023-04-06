@@ -111,3 +111,103 @@ impl Parser {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::ast::Node;
+    use crate::scanner::Scanner;
+    use crate::tokens::TokenType;
+
+    #[test]
+    fn expr() {
+        let regex = "(b|a)*".to_string();
+        let scanner = Scanner::new(regex);
+        let mut parser = Parser::new(scanner);
+        let nfa = parser.expr();
+        assert!(nfa.is_ok());
+    }
+
+    #[test]
+    fn subexpr() {
+        let regex = "b|c".to_string();
+        let scanner = Scanner::new(regex);
+        let mut parser = Parser::new(scanner);
+        //parser.eat(TokenType::Union);
+        let node = parser.subexpr().unwrap();
+        match node {
+            Node::Union { left: _, right: _ } => assert!(true),
+            _ => assert!(false),
+        }
+    }
+
+    #[test]
+    fn subseq() {
+        let regex = "ab".to_string();
+        let scanner = Scanner::new(regex);
+        let mut parser = Parser::new(scanner);
+        let node = parser.subseq().unwrap();
+        match node {
+            Node::Concat { left: _, right: _ } => assert!(true),
+            _ => assert!(false),
+        }
+    }
+
+    #[test]
+    fn seq() {
+        let regex = "a".to_string();
+        let scanner = Scanner::new(regex);
+        let mut parser = Parser::new(scanner);
+        let node = parser.seq().unwrap();
+        match node {
+            Node::Character { character: _ } => assert!(true),
+            _ => assert!(false),
+        }
+    }
+
+    #[test]
+    fn star() {
+        let regex = "c*".to_string();
+        let scanner = Scanner::new(regex);
+        let mut parser = Parser::new(scanner);
+        let node = parser.star().unwrap();
+        match node {
+            Node::Star { operand: _ } => assert!(true),
+            _ => assert!(false),
+        }
+    }
+
+    #[test]
+    fn factor() {
+        let regex = "a|b".to_string();
+        let scanner = Scanner::new(regex);
+        let mut parser = Parser::new(scanner);
+        let node = parser.factor().unwrap();
+        match node {
+            Node::Character { character: _ } => assert!(true),
+            _ => assert!(false),
+        }
+    }
+
+    #[test]
+    fn print_tokens() {
+        let regex = "ab".to_string();
+        let scanner = Scanner::new(regex);
+        let mut parser = Parser::new(scanner);
+        parser.print_tokens();
+        assert!(true);
+    }
+
+    #[test]
+    fn eat_and_advance() {
+        let regex = "a|b".to_string();
+        let scanner = Scanner::new(regex);
+        let mut parser = Parser::new(scanner);
+
+        assert_eq!(parser.current_token.type_, TokenType::Char);
+        parser.advance();
+        assert_eq!(parser.current_token.type_, TokenType::Union);
+        assert!(parser.eat(TokenType::Union).is_ok());
+        assert_eq!(parser.current_token.type_, TokenType::Char);
+    }
+}
