@@ -9,12 +9,10 @@ Regexes will support the following operators:
 
 |Operator  |Syntax  | Matches|
 --- | --- | --- |
-|?|a?| 0 or 1 "a"|
 |Or| 0\|1 | "0" or "1"|  
 |Star |a* | 0 or more "a"|
-|Plus | a+ | 1 or more "a"|
-|Group | (ab)+ | 1 or more "ab"|
-|Dot |.| any supported char|
+|Concatenation | ab | "a" followed by "b"|
+|Group | (a\|b)* | 0 or more "a" or "b"|
 
 
 ## Implementation
