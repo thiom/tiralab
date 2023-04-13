@@ -112,6 +112,8 @@ impl Parser {
     }
 }
 
+//grcov-excl-start
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -171,10 +173,12 @@ mod tests {
         let scanner = Scanner::new(regex);
         let mut parser = Parser::new(scanner);
         let node = parser.star().unwrap();
+        let mut correct = false;
         match node {
-            Node::Star { operand: _ } => assert!(true),
+            Node::Star { operand: _ } => correct = true,
             _ => assert!(false),
         }
+        assert!(correct);
     }
 
     #[test]
@@ -211,3 +215,4 @@ mod tests {
         assert_eq!(parser.current_token.type_, TokenType::Char);
     }
 }
+//grcov-excl-stop

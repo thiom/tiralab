@@ -72,7 +72,7 @@ pub fn run(config: Config) -> MyResult<()> {
             if input.is_empty() {
                 break;
             }
-            if regex.matches(input.to_string()) {
+            if regex.matches(input.to_string()).unwrap() {
                 println!("MATCH");
             } else {
                 println!("NO MATCH");
