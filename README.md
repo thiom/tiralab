@@ -14,3 +14,4 @@
 
 [Week 3](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_3.md)
 
+[Week 4](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_4.md)
