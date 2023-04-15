@@ -8,6 +8,7 @@ pub struct NFAFragment {
     transitions: HashMap<(i32, Option<u8>), HashSet<i32>>,
 }
 
+// An intermediate stage for processing the AST
 impl NFAFragment {
     pub fn new(start_state: i32, accept_states: HashSet<i32>) -> Self {
         NFAFragment {
@@ -17,7 +18,8 @@ impl NFAFragment {
         }
     }
 
-    pub fn connect(&mut self, from: i32, character: Option<u8>, to: i32) {
+    // Creates a transitions for a given symbol between states: from -> to
+    pub fn create_transition(&mut self, from: i32, character: Option<u8>, to: i32) {
         match self.transitions.get_mut(&(from, character)) {
             Some(to_states) => {
                 to_states.insert(to);
@@ -30,6 +32,7 @@ impl NFAFragment {
         }
     }
 
+    // A skeleton for a new fragment with the context of previous transitions
     pub fn create_skeleton(&self) -> Self {
         NFAFragment {
             start_state: 0,
@@ -38,7 +41,8 @@ impl NFAFragment {
         }
     }
 
-    pub fn bin_op(&self, fragment: &NFAFragment) -> Self {
+    // '|' operator in the regex
+    pub fn union_operator(&self, fragment: &NFAFragment) -> Self {
         let mut new_frag = self.create_skeleton();
         for (key, to_states) in fragment.create_skeleton().transitions {
             if !new_frag.transitions.contains_key(&key) {
@@ -48,6 +52,7 @@ impl NFAFragment {
         new_frag
     }
 
+    // Converts the fragment into NFA
     pub fn to_nfa(self) -> NFA {
         let accepts_copy = self.accept_states.clone();
         let start_copy = self.start_state;

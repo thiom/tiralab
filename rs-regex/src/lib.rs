@@ -22,6 +22,7 @@ pub struct Config {
     print_tokens: bool,
 }
 
+// Processes the cli arguments
 pub fn get_args() -> MyResult<Config> {
     let matches = App::new("rs_regex")
         .version("0.1.0")
@@ -54,6 +55,10 @@ pub fn run(config: Config) -> MyResult<()> {
         let mut parser = Parser::new(scanner);
         parser.print_tokens();
     } else {
+        if !config.regex.to_string().is_ascii() {
+            println!("Regular expression must contain valid ASCII characters only. Try again");
+            return Ok(());
+        };
         let regex = Regex::new(config.regex.to_string()).unwrap();
         loop {
             let mut input = String::new();
@@ -78,6 +83,6 @@ pub fn run(config: Config) -> MyResult<()> {
                 println!("NO MATCH");
             }
         }
-    }
+    };
     Ok(())
 }

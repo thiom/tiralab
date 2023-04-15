@@ -9,6 +9,19 @@ pub struct Parser {
     current_token: Token,
 }
 
+// Parses the regular expression by asking tokens from the scanner one by one
+// and constructs and abstract syntax tree (AST). Also converts the AST into
+// NFA at the end and returns it.
+//
+// Corresponds to the following context-free grammar (CFG)
+//
+// <expr>    ->  <subexpr> EOF
+// <subexpr> ->  <seq> '|' <subexpr> | <seq>
+// <seq>     ->  <subseq> | ''
+// <subseq>  ->  <star> <subseq> | <star>
+// <star>    ->  <factor> '*' | <factor>
+// <factor>  ->  '(' <subexpr> ')' | ASCII_CHAR
+
 impl Parser {
     pub fn new(scanner: Scanner) -> Self {
         let mut parser = Parser {
@@ -35,6 +48,7 @@ impl Parser {
         }
     }
 
+    // Consumes a token and proceeds to the next one
     pub fn eat(&mut self, token: TokenType) -> Result<(), String> {
         if self.current_token.type_ != token {
             return Err("parsing error: unexpected token".to_string());
@@ -47,6 +61,8 @@ impl Parser {
         self.current_token = self.scanner.get_next_token()
     }
 
+    // Corresponds to the production:
+    // <factor> -> '(' <subexpr> ')' | ASCII_CHAR
     fn factor(&mut self) -> Result<Node, String> {
         match self.current_token.type_ {
             TokenType::LeftParen => {
@@ -63,6 +79,8 @@ impl Parser {
         }
     }
 
+    // Corresponds to the production:
+    // <star> -> <factor> '*' | <factor>
     fn star(&mut self) -> Result<Node, String> {
         let node = self.factor()?;
         match self.current_token.type_ {
@@ -74,6 +92,8 @@ impl Parser {
         }
     }
 
+    // Corresponds to the production:
+    // <seq> -> <subseq> | ''
     fn seq(&mut self) -> Result<Node, String> {
         match self.current_token.type_ {
             TokenType::LeftParen => self.subseq(),
@@ -82,6 +102,8 @@ impl Parser {
         }
     }
 
+    // Corresponds to the production:
+    // <subseq> -><star> <subseq> | <star>
     fn subseq(&mut self) -> Result<Node, String> {
         let node = self.star()?;
         match self.current_token.type_ {
@@ -91,6 +113,8 @@ impl Parser {
         }
     }
 
+    // Corresponds to the production:
+    // <expr> -> <subexpr> EOF
     pub fn expr(&mut self) -> Result<NFA, String> {
         let node = self.subexpr()?;
         self.eat(TokenType::EOF)?;
@@ -100,6 +124,8 @@ impl Parser {
         Ok(fragment.to_nfa())
     }
 
+    // Corresponds to the producion:
+    // <subexpr> -> <seq> '|' <subexpr> | <seq>
     fn subexpr(&mut self) -> Result<Node, String> {
         let node = self.seq()?;
         match self.current_token.type_ {

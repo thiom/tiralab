@@ -9,7 +9,7 @@ pub struct Regex {
 impl Regex {
     pub fn new(regex: String) -> Result<Regex, String> {
         if !regex.is_ascii() {
-            return Err("regex not ascii".to_string());
+            return Err("Regex was not ascii".to_string());
         }
         let scanner = Scanner::new(regex);
         let mut parser = Parser::new(scanner);
@@ -17,6 +17,7 @@ impl Regex {
         Ok(Regex { dfa: nfa.to_dfa() })
     }
 
+    // Tries to recognize the input string against the DFA
     pub fn matches(&self, string: String) -> Result<bool, String> {
         if !string.is_ascii() {
             return Err("Input string was not ascii".to_string());

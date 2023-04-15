@@ -1,9 +1,11 @@
 use std::collections::HashSet;
 
+//Deterministic finite automaton
+//https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 pub struct DFA {
-    start_state: HashSet<i32>,
-    accept_states: HashSet<i32>,
-    transitions: Box<dyn Fn(HashSet<i32>, u8) -> HashSet<i32>>,
+    pub start_state: HashSet<i32>,
+    pub accept_states: HashSet<i32>,
+    pub transitions: Box<dyn Fn(HashSet<i32>, u8) -> HashSet<i32>>,
 }
 
 impl DFA {
@@ -28,11 +30,13 @@ impl DFA {
     }
 }
 
+//the runtime that is used to recognize input strings for the language (given by the dfa)
 pub struct Recognizer<'a> {
     dfa: &'a DFA,
     current_state: HashSet<i32>,
 }
 
+//all of the funcions and should be quite self-explanatory
 impl<'a> Recognizer<'a> {
     pub fn new(dfa: &'a DFA) -> Self {
         let state = dfa.start_state.clone();
