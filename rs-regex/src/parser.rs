@@ -51,7 +51,7 @@ impl Parser {
     // Consumes a token and proceeds to the next one
     pub fn eat(&mut self, token: TokenType) -> Result<(), String> {
         if self.current_token.type_ != token {
-            return Err("parsing error: unexpected token".to_string());
+            return Err("Parsing error. Check the syntax of the regular expression.".to_string());
         }
         self.advance();
         Ok(())

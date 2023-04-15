@@ -59,30 +59,38 @@ pub fn run(config: Config) -> MyResult<()> {
             println!("Regular expression must contain valid ASCII characters only. Try again");
             return Ok(());
         };
-        let regex = Regex::new(config.regex.to_string()).unwrap();
-        loop {
-            let mut input = String::new();
-            println!("\nGive a string (empty string will exit)");
-            println!("Regular expression is: {}", &config.regex);
-            let _ = stdout().flush();
-            stdin()
-                .read_line(&mut input)
-                .expect("Did not enter a correct string");
-            if let Some('\n') = input.chars().next_back() {
-                input.pop();
+        match Regex::new(config.regex.to_string()) {
+            Ok(regex) => {
+                println!("Regex read successfully");
+                loop {
+                    let mut input = String::new();
+                    println!("\nGive a string (empty string will exit)");
+                    println!("Regular expression is: {}", &config.regex);
+                    let _ = stdout().flush();
+                    stdin()
+                        .read_line(&mut input)
+                        .expect("Did not enter a correct string");
+                    if let Some('\n') = input.chars().next_back() {
+                        input.pop();
+                    }
+                    if let Some('\r') = input.chars().next_back() {
+                        input.pop();
+                    }
+                    if input.is_empty() {
+                        break;
+                    }
+                    if regex.matches(input.to_string()).unwrap() {
+                        println!("MATCH");
+                    } else {
+                        println!("NO MATCH");
+                    }
+                }
             }
-            if let Some('\r') = input.chars().next_back() {
-                input.pop();
+            Err(err) => {
+                println!("{}", err);
+                return Ok(());
             }
-            if input.is_empty() {
-                break;
-            }
-            if regex.matches(input.to_string()).unwrap() {
-                println!("MATCH");
-            } else {
-                println!("NO MATCH");
-            }
-        }
+        };
     };
     Ok(())
 }
