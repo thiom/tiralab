@@ -1,4 +1,6 @@
-## Testing
+# Testing
+
+### Coverage
 
 I generated the test code coverage reports using a tool called 
 [grcov](https://github.com/mozilla/grcov). 
@@ -13,7 +15,7 @@ inside the function would fail, while still being able to compile the code. Ther
 of view, it would be completely unnecessary to do so. Also, correctness is already being tested in multiple 
 layers, which in many cases ensures that the inputs for the function calls are as expected.
 
-TLDR: Poor funcion coverage in the coverage report should be not taken too seriously.
+TLDR: Poor function coverage in the coverage report should not be taken too seriously.
 
 The coverage report can be viewed 
 [here](https://htmlpreview.github.io/?https://github.com/thiom/tiralab/blob/main/rs-regex/coverage/index.html).
