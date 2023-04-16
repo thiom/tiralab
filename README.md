@@ -6,7 +6,7 @@
 
 [Testing document](https://github.com/thiom/tiralab/blob/main/docs/testing_doc.md)
 
-[Implementation document](https://github.com/thiom/tiralab/blob/main/docs/implementation_doc.md)
+[Implementation document](https://github.com/thiom/tiralab/blob/main/docs/implementation_doc.pdf)
 
 
 ### Weekly reports
