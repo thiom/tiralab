@@ -1,4 +1,10 @@
 ## Tiralabra 2023
+## rs-regex
+
+An iterpreter for 
+[regular expressions](https://en.wikipedia.org/wiki/Regular_expression) 
+in their formal definition in 
+[formal language theory](https://en.wikipedia.org/wiki/Formal_language)
 
 ### Docs
 
@@ -6,7 +12,8 @@
 
 [Testing document](https://github.com/thiom/tiralab/blob/main/docs/testing_doc.md)
 
-[Implementation document](https://github.com/thiom/tiralab/blob/main/docs/implementation_doc.pdf)
+[Implementation document](https://github.com/thiom/tiralab/blob/main/docs/implementation_doc.pdf) 
+(contains usage instructions)
 
 
 ### Weekly reports

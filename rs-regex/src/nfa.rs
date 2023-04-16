@@ -69,11 +69,8 @@ impl NFA {
 
 #[cfg(test)]
 mod tests {
-    //use super::*;
     use crate::parser::Parser;
     use crate::scanner::Scanner;
-    //use crate::tokens::TokenType;
-    //use rand::Rng;
 
     #[test]
     fn start_state() {
