@@ -3,7 +3,7 @@
 I generated the test code coverage reports using a tool called 
 [grcov](https://github.com/mozilla/grcov). 
 
-The tool has some strange behavior when it comes to funtion coverage. The percentages, in many cases, are showing 
+The tool has some strange behavior when it comes to function coverage. The percentages, in many cases, are showing 
 quite low even though all of the funtions are covered in the tests. This seems to caused by macros and
 inside function calls that could potentially fail. As a result, grcov interpretes them as partial hits. 
 [Here](https://github.com/mozilla/grcov/issues/476) 
@@ -17,3 +17,9 @@ TLDR: Poor funcion coverage in the coverage report should be not taken too serio
 
 The coverage report can be viewed 
 [here](https://htmlpreview.github.io/?https://github.com/thiom/tiralab/blob/main/rs-regex/coverage/index.html).
+
+
+### Organization
+The unit tests can be found directly in the source code files of the code that they are testing. The command-line 
+interface is not currently being tested. All of the core functionality is run through the Regex module (regex.rs) 
+so the 'end-to-end'-type of testing is done there.
