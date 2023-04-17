@@ -18,7 +18,7 @@ I generated the test code coverage reports using a tool called
 
 The tool has some strange behavior when it comes to function coverage. The percentages, in many cases, are showing 
 quite low even though all of the funtions are covered in the tests. This seems to caused by macros and
-inside function calls that could potentially fail. As a result, grcov interpretes them as partial hits. 
+function calls inside the funcions that could potentially fail. As a result, grcov interpretes them as partial hits. 
 [Here](https://github.com/mozilla/grcov/issues/476) 
 is some discussion about the issue. I've tried a bunch of workarounds, but haven't been able to solve the issue 
 yet. The problem is that, in a lot of cases, I'm not able to write a test that would cover the case where the funtion call 
