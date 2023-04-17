@@ -2,7 +2,7 @@
 
 ## Overview
 
-I have written an interpreter for regular expressions (regex) calle rs-regex. This is a command-line app that takes a regex 
+I have written an interpreter for regular expressions (regex) called rs-regex. This is a command-line app that takes a regex 
 as an initial input. After that, it will read given input strings one by one and tell if the language (defined by the regex) 
 recognizes them or not. The syntax of the regex is based on the formal definition of 
 [regular expressions](https://en.wikipedia.org/wiki/Regular_expression) 
