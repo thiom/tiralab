@@ -2,8 +2,12 @@
 
 ## Overview
 
-My plan is to write an interpreter for regular expressions. This will be a command-line app and take a regex and 
-a string to be matched as inputs.
+My plan is to write an interpreter for regular expressions (regex). This will be a command-line app and it will take a regex 
+as an initial input. After that, it will read given input strings one by one and tell if the language (defined by the regex) 
+recognizes them or not. The syntax of the regex is based on the formal definition of 
+[regular expressions](https://en.wikipedia.org/wiki/Regular_expression) 
+in their formal definition in 
+[formal language theory](https://en.wikipedia.org/wiki/Formal_language).
 
 Regexes will support the following operators:
 
