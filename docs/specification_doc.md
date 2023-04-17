@@ -26,8 +26,8 @@ so I'm very familiar with regular expressions in the context of theory of comput
 My initial instict would be to take similar approach to this one and follow a common convention for writing interpeters. 
 That is, there will be a scanner (or lexer) that will read input as characters one by one and split it into tokens. These tokens will 
 then be passed to the parser which will try to understand some syntactical structures from the input and construct an AST. 
-After that, the AST will be coverted to NFA and the NFA will be converted into DFA. This conversion is based on a technique 
-described in a book called "Introduction to the theory of computation, third edition" by Michael Sipser (pages 54 - 58). 
+After that, the AST will be coverted to NFA and the NFA will be converted into DFA. These two conversion are based on the techniques 
+described in the book called "Introduction to the theory of computation, third edition" by Michael Sipser (pages 54, 66). 
 Finally, the graph will be used for trying to see if the language (described by the regex) will recognize the input strings. 
 
 As for data structures, at least graphs, queues, hash tables, hash sets and some basic data structures will be used. 
