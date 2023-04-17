@@ -3,11 +3,11 @@
 Runtime performance is not really relevant for this program, so there are no tests for that. 
 The main focus is on correctness. That is, the program will need to interpret the given 
 regex correctly. After that, it has to recognize input strings correctly. Therefore, 
-these aspects are the main focuse for the tests. Also, there are a lot of conversion 
+these aspects are the main focus for the tests. Also, there are a lot of conversion 
 phases involved when the regex is converted into DFA, so ideally the correctness of 
 those conversions would be tested thoroughly as well. I certainly will be be writing 
 some tests for these, but I would argue that the end-to-end-style of testing that is 
-done in the Regex module (regex.rs) will test the correctness of the conversions 
+done in the Regex module (regex.rs) will test the correctness for some of the conversions 
 quite sufficiently. This is because incorrect conversions will eventually result to the 
 runtime giving false positives or false negatives for the matched strings.
 
