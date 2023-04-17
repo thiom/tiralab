@@ -2,8 +2,8 @@
 
 ## Overview
 
-My plan is to write an interpreter for regular expressions. This will be a command-line app and take a regex and
- a string to be matched as inputs.
+My plan is to write an interpreter for regular expressions. This will be a command-line app and take a regex and 
+a string to be matched as inputs.
 
 Regexes will support the following operators:
 
@@ -20,17 +20,15 @@ Regexes will support the following operators:
 I've never looked into implementation of regex engines before, but I have written an interpreter for a programming language recently, 
 so I'm very familiar with regular expressions in the context of theory of computation and compiler/interpreter design (used in the scanning phase). 
 My initial instict would be to take similar approach to this one and follow a common convention for writing interpeters. 
-That is, there will be a scanner (or lexer) that will read input
-as characters one by one and split it into tokens. These tokens will then be passed to the parser which will try to understand some
-syntactical structures from the input and construct a graph (usually AST, but here DFA or NFA probably). Finally, the graph will be used
-for trying to see if the language (described by the regex) will recognize the input strings. 
+That is, there will be a scanner (or lexer) that will read input as characters one by one and split it into tokens. These tokens will 
+then be passed to the parser which will try to understand some syntactical structures from the input and construct an AST. 
+After that, the AST will be coverted to NFA and the NFA will be converted into DFA. This conversion is based on a technique 
+described in a book called "Introduction to the theory of computation, third edition" by Michael Sipser (pages 54 - 58). 
+Finally, the graph will be used for trying to see if the language (described by the regex) will recognize the input strings. 
 
-As for data structures, at least graphs will be used, probably stacks, arrays and some basic data structures as well. 
-The graph will be explored with some searching algorithms, possibly DFS.
-I'm not quite sure yet about how exactly I'm going to implement this so it's difficult to give more details at this point. I might change my
-approach completely if I come up with some smarter way to make this work. This first
-week was very busy for me and I didn't have too much time to look into this project yet.
-I would expect the runtime to be around O(n), n being the length of the string to be matched.
+As for data structures, at least graphs, queues, hash tables, hash sets and some basic data structures will be used. 
+I would expect the runtime to be around O(n), n being the length of the string to be matched. The more detailed implementation 
+of the program will be described in the implementation document.
 
 ## Languages
 
