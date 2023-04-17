@@ -66,7 +66,7 @@ pub fn run(config: Config) -> MyResult<()> {
                 loop {
                     let mut input = String::new();
                     println!(
-                        "\nGive a string (two consecutive empty string will exit the program)"
+                        "\nGive a string (two consecutive empty strings will exit the program)"
                     );
                     println!("Regular expression is: {}", &config.regex);
                     let _ = stdout().flush();
