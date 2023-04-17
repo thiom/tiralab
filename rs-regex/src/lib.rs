@@ -62,9 +62,12 @@ pub fn run(config: Config) -> MyResult<()> {
         match Regex::new(config.regex.to_string()) {
             Ok(regex) => {
                 println!("Regex read successfully");
+                let mut empty_strings = 0;
                 loop {
                     let mut input = String::new();
-                    println!("\nGive a string (empty string will exit)");
+                    println!(
+                        "\nGive a string (two consecutive empty string will exit the program)"
+                    );
                     println!("Regular expression is: {}", &config.regex);
                     let _ = stdout().flush();
                     stdin()
@@ -77,8 +80,14 @@ pub fn run(config: Config) -> MyResult<()> {
                         input.pop();
                     }
                     if input.is_empty() {
+                        empty_strings += 1;
+                    } else {
+                        empty_strings = 0;
+                    }
+                    if empty_strings >= 2 {
                         break;
                     }
+
                     if regex.matches(input.to_string()).unwrap() {
                         println!("MATCH");
                     } else {
