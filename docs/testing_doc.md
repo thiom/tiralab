@@ -1,5 +1,8 @@
 # Testing
 
+Testing is done using Rust's built-in unit testing. To run the tests, use command 
+```cargo test``` in the project folder. 
+
 Runtime performance is not really relevant for this program, so there are no tests for that. 
 The main focus is on correctness. That is, the program will need to interpret the given 
 regex correctly. After that, it has to recognize input strings correctly. Therefore, 
