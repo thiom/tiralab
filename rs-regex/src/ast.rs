@@ -8,7 +8,7 @@ pub enum Node {
     Star { operand: Box<Node> },
 }
 
-// AST nodes
+// Abstract syntax tree (AST) nodes
 impl Node {
     pub fn character(character: u8) -> Self {
         Node::Character { character }

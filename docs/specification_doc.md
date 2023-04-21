@@ -25,10 +25,10 @@ I've never looked into implementation of regex engines before, but I have writte
 so I'm quiete familiar with regular expressions in the context of theory of computation and compiler/interpreter design (used in the scanning phase). 
 My approach is to take similar approach to this one and follow a common convention for writing interpeters. 
 That is, there is a scanner (or lexer) that will read input as characters one by one and split it into tokens. These tokens will 
-then be passed to the parser which will try to understand some syntactical structures from the input and construct an AST. 
-After that, the AST will be coverted to NFA and the NFA will be converted into DFA. These two conversion are based on the techniques 
-described in the book called "Introduction to the theory of computation, third edition" by Michael Sipser (pages 54, 66). 
-Finally, the DFA will be used for testing if the language (defined by the regex) will recognize the input strings. 
+then be passed to the parser which will try to understand some syntactical structures from the input and construct an AST (abstract syntax tree). 
+After that, the AST will be coverted to NFA (nondeterministic finite automaton) and the NFA will be converted into DFA (deterministic finite automaton). 
+These two conversion are based on the techniques described in the book called "Introduction to the theory of computation, third edition" by Michael Sipser 
+(pages 54, 66). Finally, the DFA will be used for testing if the language (defined by the regex) will recognize the input strings. 
 
 As for data structures, at least graphs, queues, hash tables, hash sets and some basic data structures will be used. 
 I would expect the runtime to be around O(n), n being the length of the string to be matched. The more detailed implementation 
@@ -41,3 +41,11 @@ The documentation and code will all be written in English, but I understand Finn
 
 
 I am doing bachelor's in CS.
+
+## Sources
+
+- https://en.wikipedia.org/wiki/Regular_expression 
+- https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton 
+- https://en.wikipedia.org/wiki/Deterministic_finite_automaton 
+- Inroduction to the Theory of Computation, Third Edition, Michael Sipser 
+- [Crafting Interpreters, Robert Nystrom](https://craftinginterpreters.com/) 
