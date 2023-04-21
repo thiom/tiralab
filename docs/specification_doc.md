@@ -47,5 +47,6 @@ I am doing bachelor's in CS.
 - https://en.wikipedia.org/wiki/Regular_expression 
 - https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton 
 - https://en.wikipedia.org/wiki/Deterministic_finite_automaton 
+- https://en.wikipedia.org/wiki/Context-free_grammar 
 - Inroduction to the Theory of Computation, Third Edition, Michael Sipser 
 - [Crafting Interpreters, Robert Nystrom](https://craftinginterpreters.com/) 
