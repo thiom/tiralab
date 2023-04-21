@@ -10,9 +10,9 @@ in their formal definition in
 ### How to run
 
 - [Install Rust and Cargo](https://www.rust-lang.org/tools/install)
-- inside rs-regex directory, run 
+- inside rs-regex directory, run  
 ```cargo run "<YOUR REGEX>"```
-or print instructions by running
+or print instructions by running  
 ```cargo run -- --help```
 
 NOTE: The regex must be given inside quotes
