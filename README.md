@@ -6,6 +6,17 @@ An iterpreter for
 in their formal definition in 
 [formal language theory](https://en.wikipedia.org/wiki/Formal_language)
 
+
+### How to run
+
+- [Install Rust and Cargo](https://www.rust-lang.org/tools/install)
+- inside rs-regex directory, run 
+```cargo run "<YOUR REGEX>"```
+or print instructions by running
+```cargo run -- --help```
+
+NOTE: The regex must be given inside quotes
+
 ### Docs
 
 [Project specification](https://github.com/thiom/tiralab/blob/main/docs/specification_doc.md)
