@@ -36,3 +36,5 @@ NOTE: The regex must be given inside quotes
 [Week 3](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_3.md)
 
 [Week 4](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_4.md)
+
+[Week 5](https://github.com/thiom/tiralab/blob/main/docs/weekly_report_5.md)
