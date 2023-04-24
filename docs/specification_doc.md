@@ -23,7 +23,7 @@ Regexes will support the following operators:
 
 I've never looked into implementation of regex engines before, but I have written an interpreter for a programming language recently, 
 so I'm quite familiar with regular expressions in the context of theory of computation and compiler/interpreter design (used in the scanning phase). 
-I decided to took an similar approach to this one and follow common design patterns for writing interpeters. 
+I decided to took an similar approach to this one and follow common design patterns for writing interpreters. 
 That is, there is a scanner (or lexer) that will read input as characters one by one and split it into tokens. These tokens will 
 then be passed to the parser which will try to understand some syntactical structure from the input and construct an AST (abstract syntax tree). 
 After that, the AST will be coverted into NFA (nondeterministic finite automaton) and the NFA will be converted into DFA (deterministic finite automaton). 
