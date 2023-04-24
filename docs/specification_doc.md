@@ -30,6 +30,8 @@ After that, the AST will be coverted to NFA (nondeterministic finite automaton) 
 These two conversion are based on the techniques described in the book called "Introduction to the theory of computation, third edition" by Michael Sipser 
 (pages 54, 66). Finally, the DFA will be used for testing if the language (defined by the regex) will recognize the input strings. 
 
+![](https://github.com/thiom/tiralab/blob/main/docs/img/rs-regex-overview.drawio.png)
+
 As for data structures, at least graphs, queues, hash tables, hash sets and some basic data structures will be used. 
 I would expect the runtime to be around O(n), n being the length of the string to be matched. The more detailed implementation 
 of the program will be described in the implementation document.
