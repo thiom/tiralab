@@ -26,14 +26,17 @@ The following operators are supported
 |Concatenation | ab | "a" followed by "b"|
 |Group | (a\|b)* | 0 or more "a" or "b"|
 
-Empty string (epsilon) is represented by the combination ```()*```
+Empty string (epsilon) is represented by the combination ```()*```. Also, if you want to add a space at the front 
+or at the end of the string, you need to wrap it inside parenthases. So ```"(  )a"``` accepts " a" and ```"b(  )*"``` 
+accepts "b", "b " and "b      ". Spaces between characters are interpreted just as you'd expect, so ```"x y"``` 
+accepts "x y", but not "xy".
 
-Here are some examples
+Here are some more examples:
 
 ```"(a|b)(a|b)*"``` accepts any string that only contains characters 'a' and 'b' and does not accept en empty string.  
 e.g. "b", "a", "abba" and "babbaabbabababa" are accepted  
 
-```"(Hello)( World|()*)!"``` only accepts the strings "Hello!" and "Hello World!".  
+```"(Hello)( world|()*)!"``` only accepts the strings "Hello!" and "Hello world!".  
 
 ```"(0|(-|()*)(1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*)"``` recognizes all valid integers.  
 e.g. "100", "-9999991" and "0" are accepted, whereas "-0", "09", "000001" and "0.1" are rejected  
