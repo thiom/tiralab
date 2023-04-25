@@ -31,10 +31,10 @@ Empty string (epsilon) is represented by the combination ```()*```
 Here are some examples
 
 ```"(a|b)(a|b)*"``` accepts any string that only contains characters 'a' and 'b' and does not accept en epmty string.  
-e.g. "b", "a", "abba" and "babbaabbabababa" are accepted
+e.g. "b", "a", "abba" and "babbaabbabababa" are accepted  
 ```"(Hello)( World|()*)!"``` only accepts the strings "Hello!" and "Hello World!"
-``"(0|(-|()*)(1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*)"``` recognizes all valid integers
-e.g. "100", "-9999991" and "0" are accepted. "-0" "09" and "000001" are rejected
+```"(0|(-|()*)(1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*)"``` recognizes all valid integers  
+e.g. "100", "-9999991" and "0" are accepted. "-0" "09" and "000001" are rejected  
 
 
 ### Docs
