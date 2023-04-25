@@ -27,8 +27,8 @@ The following operators are supported
 |Group | (a\|b)* | 0 or more "a" or "b"|
 
 Empty string (epsilon) is represented by the combination ```()*```. Also, if you want to add a space at the front 
-or at the end of the string, you need to wrap it inside parenthases. So ```"(  )a"``` accepts " a" and ```"b(  )*"``` 
-accepts "b", "b " and "b      ". Spaces between characters are interpreted just as you'd expect, so ```"x y"``` 
+or at the end of the regex, you need to wrap it inside parenthases. So ```"(  )a"``` accepts " a" and ```"b(  )*"``` 
+accepts "b", "b " and "b &nbsp; &nbsp; &nbsp;". Spaces between characters are interpreted just as you'd expect, so ```"x y"``` 
 accepts "x y", but not "xy".
 
 Here are some more examples:
