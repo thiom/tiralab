@@ -35,7 +35,7 @@ expand the leftmost derivation first. This results to so called top-down (or rec
 which can be visualized in the parse tree example shown below. The number one in LL(1) means that we-re making 
 parsing decisions based on only one look-ahead symbol.
 
-![](https://github.com/thiom/tiralab/blob/main/docs/img/parse_tree.v2.svg)
+![](https://github.com/thiom/tiralab/blob/main/docs/img/parse_tree.png)
 
 After a succesfull production, a node (src/ast.rs) will be created. The information that is relevent for any further 
 stages of the program is stored in the node and it will be inserted as a part of an abstract syntax tree (AST). The 
