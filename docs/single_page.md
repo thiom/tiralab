@@ -14,7 +14,7 @@ Regexes will support the following operators:
 |Group | (a\|b)* | 0 or more "a" or "b"|
 
 
-![](https://github.com/thiom/tiralab/blob/main/docs/img/rs-regex-overview.drawio.png)
+![](https://github.com/thiom/tiralab/blob/main/docs/img/rs-regex-overview.png)
 
 ### Parser
 
