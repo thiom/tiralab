@@ -35,7 +35,7 @@ expand the leftmost derivation first. This results to so called top-down (or rec
 which can be visualized in the parse tree example shown below. The number one in LL(1) means that we-re making 
 parsing decisions based on only one look-ahead symbol.
 
-![](https://github.com/thiom/tiralab/blob/main/docs/img/parse_tree.drawio.svg)
+![](https://github.com/thiom/tiralab/blob/main/docs/img/parse_tree.svg)
 
 After a succesfull production, a node (src/ast.rs) will be created. The information that is relevent for any further 
 stages of the program is stored in the node and it will be inserted as a part of an abstract syntax tree (AST). The 
@@ -53,7 +53,7 @@ blocks called NFA fragments (src/nfa_fragment.rs) and connecting them to each ot
 expression into an equivalent NFA is based on techniques discribed in the book "Introduction to the Theory of 
 Computation, Third Edition, Michael Sipser" on pages 66-69. Here are a few examples of the illustrated conversions:
 
-![](https://github.com/thiom/tiralab/blob/main/docs/img/regex_to_nfa_v5.drawio.svg)
+![](https://github.com/thiom/tiralab/blob/main/docs/img/regex_to_nfa.png)
 
 
 ### Sources
