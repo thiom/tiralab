@@ -53,7 +53,7 @@ blocks called NFA fragments (src/nfa_fragment.rs) and connecting them to each ot
 expression into an equivalent NFA is based on techniques discribed in the book "Introduction to the Theory of 
 Computation, Third Edition, Michael Sipser" on pages 66-69. Here are a few examples of the illustrated conversions:
 
-![](https://github.com/thiom/tiralab/blob/main/docs/img/regex_to_nfa.png)
+![](https://github.com/thiom/tiralab/blob/main/docs/img/regex_to_nfa.v2.png)
 
 
 ### Sources
