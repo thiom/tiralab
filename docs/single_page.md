@@ -1,10 +1,9 @@
-# Regular Expressions Interpreter
+# Regular Expressions Interpreter,
+# Implementation
 
 ## Overview
 
-This is a single page doc for the purpose of demoing the app... I'm still working on it.
-
-Regexes will support the following operators:
+The syntax is based on the formal definition and following operators are supported:
 
 |Operator  |Syntax  | Matches|
 --- | --- | --- |
@@ -15,6 +14,15 @@ Regexes will support the following operators:
 
 
 ![](https://github.com/thiom/tiralab/blob/main/docs/img/rs-regex-overview.png)
+
+
+## Scanner
+
+The purpose of the scanner (also known as lexer) is to split the the regex into tokens (src/tokens.rs) 
+which will then be consumed by the parser. This stage is very simple for this particular program, since 
+there are only 7 distinct token patterns which are mostly single characters. The patterns look like this:
+
+TODO
 
 ### Parser
 

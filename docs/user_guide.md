@@ -31,3 +31,18 @@ e.g. "b", "a", "abba" and "babbaabbabababa" are accepted
 
 ```"(0|(-|()*)(1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*)"``` recognizes all valid integers.  
 e.g. "100", "-9999991" and "0" are accepted, whereas "-0", "09", "000001" and "0.1" are rejected  
+
+There is also an option to print the tokens for a given regular expression. This will just print the tokens and 
+exit the program
+
+```
+cargo run "a(b|c)*" -t
+
+Token(Char, a)
+Token(LeftParen, ()
+Token(Char, b)
+Token(Union, |)
+Token(Char, c)
+Token(RightParen, ))
+Token(Star, *)
+```
