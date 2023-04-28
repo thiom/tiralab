@@ -22,7 +22,7 @@ Regexes will support the following operators:
 ## Implementation
 
 In this context, the RE can be viewed as a simple programming language. Then, the purpose of this program is to make that 
-into an exetutable that will read input strings and determine whether they belong to the language that is defined by the 
+into an executable that will read input strings and determine whether they belong to the language that is defined by the 
 RE. The interpretation part of the program mostly follows common design patterns for writing interpreters. 
 That is, there is a scanner (or lexer) that will read input as characters one by one and split it into tokens. These 
 tokens will then be passed to the parser which will try to understand some syntactical structure from the input and 
