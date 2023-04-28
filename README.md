@@ -4,16 +4,7 @@
 An iterpreter for 
 [regular expressions](https://en.wikipedia.org/wiki/Regular_expression) 
 in their formal definition in 
-[formal language theory](https://en.wikipedia.org/wiki/Formal_language)
-
-The following operators are supported
-
-|Operator  |Syntax  | Matches|
---- | --- | --- |
-|Union | 0\|1 | "0" or "1"|  
-|Star |a* | 0 or more "a"|
-|Concatenation | ab | "a" followed by "b"|
-|Group | (a\|b)* | 0 or more "a" or "b"|
+[formal language theory](https://en.wikipedia.org/wiki/Formal_language).
 
 
 ### Docs
