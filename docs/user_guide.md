@@ -19,12 +19,38 @@ The following operators are supported
 |Concatenation | ab | "a" followed by "b"|
 |Group | (a\|b)* | 0 or more "a" or "b"|
 
-Empty string (epsilon) is represented by the combination ```()*```. Also, if you want to add a space at the front 
-or at the end of the regex, you need to wrap it inside parenthases. So ```"(  )a"``` accepts " a" and ```"b(  )*"``` 
-accepts "b", "b " and "b &nbsp; &nbsp; &nbsp;". Spaces between characters are interpreted just as you'd expect, so ```"x y"``` 
-accepts "x y", but not "xy".
+- Empty string (epsilon) is represented by the combination ```()*```.
+- If you want to add a space at the front or at the end of the regex, you need to wrap it inside parenthases. 
+So ```"(  )a"``` accepts " a" and ```"b(  )*"``` accepts "b", "b " and "b &nbsp; &nbsp; &nbsp;". 
+Spaces between characters are interpreted just as you'd expect, so ```"x y"``` accepts "x y", but not "xy".
+- Only ASCII characters are supported.
 
-## Examples
+Once you run the program with your regex, it will start asking you strings and tell if the regex accepts or 
+rejects the them. Two consecutive empty strings will exit the program. Here's an example:
+
+```
+cargo run "a(b|c)*"
+    Finished dev [unoptimized + debuginfo] target(s) in 0.06s
+     Running `target/debug/rs-regex 'a(b|c)*'`
+Regex read successfully
+
+Give a string (two consecutive empty strings will exit the program)
+Regular expression is: a(b|c)*
+a
+ACCEPT
+
+Give a string (two consecutive empty strings will exit the program)
+Regular expression is: a(b|c)*
+b
+REJECT
+
+Give a string (two consecutive empty strings will exit the program)
+Regular expression is: a(b|c)*
+abc
+ACCEPT
+```
+
+### Some example expressions
 
 ```"(a|b)(a|b)*"``` accepts any string that only contains characters 'a' and 'b' and does not accept en empty string.  
 e.g. "b", "a", "abba" and "babbaabbabababa" are accepted  
