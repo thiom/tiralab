@@ -1,4 +1,4 @@
-## How to run
+### Compiling and running
 
 - [Install Rust and Cargo](https://www.rust-lang.org/tools/install)
 - inside **rs-regex** directory, run  
@@ -7,6 +7,8 @@
 ```cargo run -- --help```
 
 NOTE: The regex must be given inside quotes
+
+### Usage
 
 The following operators are supported
 
@@ -22,7 +24,7 @@ or at the end of the regex, you need to wrap it inside parenthases. So ```"(  )a
 accepts "b", "b " and "b &nbsp; &nbsp; &nbsp;". Spaces between characters are interpreted just as you'd expect, so ```"x y"``` 
 accepts "x y", but not "xy".
 
-Here are some more examples:
+### Examples
 
 ```"(a|b)(a|b)*"``` accepts any string that only contains characters 'a' and 'b' and does not accept en empty string.  
 e.g. "b", "a", "abba" and "babbaabbabababa" are accepted  
