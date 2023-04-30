@@ -61,11 +61,11 @@ mod tests {
         let regex = "aa(b|cc)*a";
         let dfa = Regex::new(regex.to_string()).unwrap();
         let to_accept = vec!["aaa", "aaba", "aacca", "aabba", "aabbccbbbccbcca"];
-        let to_deny = vec!["aa", "aabaa", "aaccca", "aabbac", "bbccbbbccbcca"];
+        let to_reject = vec!["aa", "aabaa", "aaccca", "aabbac", "bbccbbbccbcca"];
         for s in to_accept {
             assert!(dfa.matches(s.to_string()).unwrap());
         }
-        for s in to_deny {
+        for s in to_reject {
             assert!(!dfa.matches(s.to_string()).unwrap());
         }
     }
@@ -75,11 +75,11 @@ mod tests {
         let regex = "(B|cc|GG)*A";
         let dfa = Regex::new(regex.to_string()).unwrap();
         let to_accept = vec!["BA", "A", "ccGGA", "BBBA", "BBGGBBccA", "ccccccGGBGGA"];
-        let to_deny = vec!["B", "", "AA", "cccA", "AB", "BcA", "BB", "BBBBBBB", "F"];
+        let to_reject = vec!["B", "", "AA", "cccA", "AB", "BcA", "BB", "BBBBBBB", "F"];
         for s in to_accept {
             assert!(dfa.matches(s.to_string()).unwrap());
         }
-        for s in to_deny {
+        for s in to_reject {
             assert!(!dfa.matches(s.to_string()).unwrap());
         }
     }
@@ -136,6 +136,41 @@ mod tests {
         }
         for string in to_accept {
             assert!(dfa.matches(string).unwrap());
+        }
+    }
+
+    #[test]
+    fn escape_characters() {
+        let regex = "(\\*|\\(|\\)|\\|)*".to_string();
+        let dfa = Regex::new(regex.to_string()).unwrap();
+        let to_accept = vec!["***", "", "()", ")(", "|", "(|)*"];
+        for s in to_accept {
+            assert!(dfa.matches(s.to_string()).unwrap());
+        }
+    }
+
+    #[test]
+    fn integers() {
+        let regex = "(0|(-|()*)(1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*)";
+        let dfa = Regex::new(regex.to_string()).unwrap();
+        let to_accept = vec!["1", "0", "-1", "9999999", "123123123", "-123123123"];
+        let to_reject = vec!["-0", "0.123", "", "asd", "01", "00", "007"];
+        for s in to_accept {
+            assert!(dfa.matches(s.to_string()).unwrap());
+        }
+        for s in to_reject {
+            assert!(!dfa.matches(s.to_string()).unwrap());
+        }
+    }
+
+    #[test]
+    fn random_integers() {
+        let regex = "(0|(-|()*)(1|2|3|4|5|6|7|8|9)(0|1|2|3|4|5|6|7|8|9)*)";
+        let dfa = Regex::new(regex.to_string()).unwrap();
+        let mut rng = rand::thread_rng();
+        for _ in 0..100 {
+            let s = rng.gen_range(-999..999).to_string();
+            assert!(dfa.matches(s).unwrap());
         }
     }
 }

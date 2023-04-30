@@ -24,6 +24,8 @@ The following operators are supported
 So ```"(  )a"``` accepts " a" and ```"b(  )*"``` accepts "b", "b " and "b &nbsp; &nbsp; &nbsp;". 
 Spaces between characters are interpreted just as you'd expect, so ```"x y"``` accepts "x y", but not "xy".
 - Only ASCII characters are supported.
+- If you want to include operator symbols as non-operators, you need to use backslash in front of them, e.g. 
+```"\*\*\*"``` accepts the string "***". This may apply to some other special characters as well.
 
 Once you run the program with your regex, it will start asking you strings and tell if the regex accepts or 
 rejects the them. Two consecutive empty strings will exit the program. Here's an example:
