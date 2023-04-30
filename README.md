@@ -29,3 +29,5 @@ in their formal definition in
 [Week 4](./docs/weekly_report_4.md)
 
 [Week 5](./docs/weekly_report_5.md)
+
+[Week 6](./docs/weekly_report_6.md)

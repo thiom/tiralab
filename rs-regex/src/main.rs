@@ -55,7 +55,7 @@ fn main() {
             let mut parser = Parser::new(scanner);
             parser.print_tokens();
         } else {
-            if !config.regex.to_string().is_ascii() {
+            if !config.regex.is_ascii() {
                 println!("Regular expression must contain valid ASCII characters only. Try again");
                 return Ok(());
             };

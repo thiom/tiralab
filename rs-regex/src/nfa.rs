@@ -50,8 +50,7 @@ impl NFA {
 
     //converts the nfa into a corresponding dfa
     pub fn to_dfa(self) -> DFA {
-        let start =
-            self.transform_transitions(vec![self.start_state.clone()].into_iter().collect());
+        let start = self.transform_transitions(vec![self.start_state].into_iter().collect());
         let accept = self.accept_states.clone();
         let transition_set = move |set: HashSet<i32>, character: u8| {
             let mut result = HashSet::<i32>::new();

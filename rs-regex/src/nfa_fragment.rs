@@ -45,9 +45,12 @@ impl NFAFragment {
     pub fn union_operator(&self, fragment: &NFAFragment) -> Self {
         let mut new_frag = self.create_skeleton();
         for (key, to_states) in fragment.create_skeleton().transitions {
+            /*
             if !new_frag.transitions.contains_key(&key) {
                 new_frag.transitions.insert(key, to_states);
             }
+            */
+            new_frag.transitions.entry(key).or_insert(to_states);
         }
         new_frag
     }
@@ -60,8 +63,8 @@ impl NFAFragment {
             .transitions
             .get(&(start, character))
         {
-            None => return Err("Can't make transitions".to_string()),
-            Some(to_states) => return Ok(to_states.clone()),
+            None => Err("Can't make transitions".to_string()),
+            Some(to_states) => Ok(to_states.clone()),
         };
         NFA::new(start_copy, accepts_copy, Box::new(t))
     }
