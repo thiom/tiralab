@@ -9,13 +9,13 @@ in their formal definition in
 
 ### Docs
 
-[Usage instructions](https://github.com/thiom/tiralab/blob/main/docs/user_guide.md)  
+[Usage instructions](./docs/user_guide.md)  
 
-[Project specification](https://github.com/thiom/tiralab/blob/main/docs/specification_doc.md)
+[Project specification](./docs/specification_doc.md)
 
-[Testing](https://github.com/thiom/tiralab/blob/main/docs/testing_doc.md)
+[Testing](./docs/testing_doc.md)
 
-[Implementation](https://github.com/thiom/tiralab/blob/main/docs/implementation_doc.pdf) 
+[Implementation](./docs/implementation_doc.pdf) 
 
 
 ### Weekly reports
