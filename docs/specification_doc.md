@@ -28,8 +28,8 @@ That is, there is a scanner (or lexer) that will read input as characters one by
 tokens will then be passed to the parser which will try to understand some syntactical structure from the input and 
 construct an AST (abstract syntax tree). After that, the AST will be coverted into NFA (nondeterministic finite automaton) 
 and the NFA will be converted into DFA (deterministic finite automaton). These two conversion are based on the 
-techniques described in the book called "Introduction to the theory of computation, third edition" by Michael Sipser 
-(pages 54, 66). Finally, the DFA will be used for testing if the language (defined by the regex) will recognize the 
+techniques described in the books "Introduction to the Theory of Computation" and "Engineering a Compiler". 
+Finally, the DFA will be used for testing if the language (defined by the regex) will recognize the 
 input strings. 
 
 ![](https://github.com/thiom/tiralab/blob/main/docs/img/rs-regex-overview.png)
@@ -52,5 +52,6 @@ I am doing bachelor's in CS.
 - https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton 
 - https://en.wikipedia.org/wiki/Deterministic_finite_automaton 
 - https://en.wikipedia.org/wiki/Context-free_grammar 
-- Introduction to the Theory of Computation, Third Edition, Michael Sipser 
+- Introduction to the Theory of Computation, Third Edition by Michael Sipser 
+- Engineering a Compiler, 2nd Edition by Keith D. Cooper and Linda Torczon
 - [Crafting Interpreters, Robert Nystrom](https://craftinginterpreters.com/) 
