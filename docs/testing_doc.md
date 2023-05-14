@@ -11,13 +11,14 @@ phases involved when the regex is converted into DFA, so ideally the correctness
 those conversions would be tested thoroughly as well. I certainly will be be writing 
 some tests for these, but I would argue that the end-to-end-style of testing that is 
 done in the Regex module (regex.rs) will test the correctness for some of the conversions 
-quite sufficiently. This is because incorrect conversions will eventually result to the 
-runtime giving false positives or false negatives for the matched strings.
+quite sufficiently. This is because incorrect conversions would eventually result to the 
+runtime accepting of rejecting strings incorrectly.
 
 ### Coverage
 
 I generated the test code coverage reports using a tool called 
-[grcov](https://github.com/mozilla/grcov). 
+[grcov](https://github.com/mozilla/grcov).
+There is a bash script for running the tool in the rs-regex folder.
 
 The tool has some strange behavior when it comes to function coverage. The percentages, in many cases, are showing 
 quite low even though all of the funtions are covered in the tests. This seems to caused by macros and
