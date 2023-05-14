@@ -17,7 +17,7 @@ impl Regex {
         Ok(Regex { dfa: nfa.to_dfa() })
     }
 
-    // Tries to recognize the input string against the DFA
+    /// Tries to recognize the input string against the DFA
     pub fn matches(&self, string: String) -> Result<bool, String> {
         if !string.is_ascii() {
             return Err("Input string was not ascii".to_string());

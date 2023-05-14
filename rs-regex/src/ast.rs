@@ -8,13 +8,13 @@ pub enum Node {
     Star { operand: Box<Node> },
 }
 
-// Abstract syntax tree (AST) nodes
+/// Abstract syntax tree (AST) nodes
 impl Node {
     pub fn character(character: u8) -> Self {
         Node::Character { character }
     }
 
-    // '|' operator in regex
+    /// '|' operator in regex
     pub fn union(left: Node, right: Node) -> Self {
         Node::Union {
             left: Box::new(left),
@@ -22,7 +22,7 @@ impl Node {
         }
     }
 
-    // contatenation in regex, such as 'aa'
+    /// contatenation in regex, such as 'aa'
     pub fn concat(left: Node, right: Node) -> Self {
         Node::Concat {
             left: Box::new(left),
@@ -30,14 +30,14 @@ impl Node {
         }
     }
 
-    // '*' operator in regex
+    /// '*' operator in regex
     pub fn star(operand: Node) -> Self {
         Node::Star {
             operand: Box::new(operand),
         }
     }
 
-    // Recursively converts the AST into NFA fragments
+    /// Recursively converts the AST into NFA fragments
     pub fn to_fragment(self, counter: &mut Counter) -> NFAFragment {
         match self {
             Node::Character { character } => {
@@ -94,7 +94,7 @@ impl Node {
     }
 }
 
-// Used for labeling the states for automatons
+/// Used for labeling the states
 pub struct Counter {
     state_count: i32,
 }

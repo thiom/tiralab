@@ -1,8 +1,8 @@
 use crate::dfa::DFA;
 use std::collections::{HashSet, VecDeque};
 
-//Nondeterministic finite automaton
-//https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
+/// Nondeterministic finite automaton
+/// https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
 pub struct NFA {
     start_state: i32,
     accept_states: HashSet<i32>,
@@ -22,12 +22,12 @@ impl NFA {
         }
     }
 
-    //finds the destination state from a given state and a symbol
+    /// Finds the destination state from a given state and a symbol
     fn find_transitions(&self, state: i32, character: Option<u8>) -> Result<HashSet<i32>, String> {
         (self.transitions)(state, character)
     }
 
-    //eliminates the epsilon transitions for the dfa conversion
+    /// Eliminates the epsilon transitions for the dfa conversion
     fn transform_transitions(&self, set: HashSet<i32>) -> HashSet<i32> {
         let mut not_visited: VecDeque<i32> = set.into_iter().collect();
         let mut visited = VecDeque::<i32>::new();
@@ -48,7 +48,7 @@ impl NFA {
         visited.into_iter().collect()
     }
 
-    //converts the nfa into a corresponding dfa
+    /// Converts the NFA into an equivalent DFA
     pub fn to_dfa(self) -> DFA {
         let start = self.transform_transitions(vec![self.start_state].into_iter().collect());
         let accept = self.accept_states.clone();

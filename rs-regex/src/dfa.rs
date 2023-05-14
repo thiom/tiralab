@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
-// Deterministic finite automaton
-// https://en.wikipedia.org/wiki/Deterministic_finite_automaton
+/// Deterministic finite automaton
+/// https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 pub struct DFA {
     pub start_state: HashSet<i32>,
     pub accept_states: HashSet<i32>,
@@ -30,13 +30,12 @@ impl DFA {
     }
 }
 
-// the runtime that is used to recognize input strings for the language (given by the dfa)
+/// The runtime for recognizing the input strings
 pub struct Recognizer<'a> {
     dfa: &'a DFA,
     current_state: HashSet<i32>,
 }
 
-// all of the funcions and should be quite self-explanatory
 impl<'a> Recognizer<'a> {
     pub fn new(dfa: &'a DFA) -> Self {
         let state = dfa.start_state.clone();
@@ -51,13 +50,13 @@ impl<'a> Recognizer<'a> {
         self.current_state = self.dfa.get_transition(state, character)
     }
 
-    // check if the current state is an accept state
+    /// Check if the current state is an accept state
     fn is_accept_state(&self) -> bool {
         !(&self.dfa.accept_states & &self.current_state).is_empty()
     }
 
-    // make transitions along the dfa given by the input string and check if
-    // we end up in an accept state
+    /// Make transitions along the dfa given by the input string and check if
+    /// We end up in an accept state
     pub fn accepts(&mut self, input: &[u8]) -> bool {
         for &symbol in input {
             self.make_transition(symbol);
